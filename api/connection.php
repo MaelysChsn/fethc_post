@@ -5,7 +5,7 @@ $password = "password";
 $database= "db";
 
 // Create connection
-$db = mysqli_connect($servername, $username, $password, $database, 8080);
+$db = mysqli_connect($servername, $username, $password, $database);
 
 // Check connection
 if ($db->connect_error) {

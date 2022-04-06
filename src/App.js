@@ -24,7 +24,7 @@ function App() {
          'Accept': 'application/json',
          'Content-Type': 'application/json',
       },
-      body: data
+      body: {username: "test", password: "1234"}
     };
 
     fetch('http://localhost:5555', requestOptions)
