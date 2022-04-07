@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ErrorCard from './errorCard'
 
-export default function FormPost({onSetActive, isActive, active, onSetPost, post}){
+export default function FormPost({currentUser, onSetActive, isActive, active, onSetPost, post}){
 
    const [code, setCode] = useState(true);
 
@@ -39,7 +39,7 @@ export default function FormPost({onSetActive, isActive, active, onSetPost, post
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      onSetPost({user_id: "1", title: e.target.title.value, content: e.target.content.value})
+      onSetPost({title: e.target.title.value, content: e.target.content.value, token: e.target.token.value})
    }
 
     return (
@@ -54,7 +54,7 @@ export default function FormPost({onSetActive, isActive, active, onSetPost, post
 
                  <label>Content</label>
                  <textarea name="" cols="" rows="" type="text" id="content" name="content" placeholder="Content.." ></textarea>
-
+                 <input type="text" name="token" value={currentUser} hidden />
                  <input type="submit" value="Submit" />
              </form>
          </div>

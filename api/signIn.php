@@ -15,7 +15,7 @@ if($_POST){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$check = "SELECT `username`, `password` FROM `user` WHERE  `username`='$username' AND `password`='$password' ";
+		$check = "SELECT `username`, `password` FROM `user` WHERE  `username`='$username' AND `password`='$password'";
 		$resultCheck = $db->query(resultCheck);
 		$count = $result->rowCount();
 

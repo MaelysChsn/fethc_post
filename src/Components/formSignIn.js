@@ -59,7 +59,7 @@ export default function FormSignIn({isActive, onSetActive, active}){
                  <label>Password</label>
                  <input type="password" id="password" name="password" placeholder="Your password.." />
 
-                 <input type="submit" value="Sign In" />
+                 <input type="submit" id="token" value="Sign In" />
              </form>
          </div>
          <button type="button"  className="btn" onClick={() => onSetActive('logIn')}>Se connecter ?</button>

@@ -9,7 +9,8 @@ function App() {
 
   const [active, setActive] = useState('signIn');
   const [postDB, setPostDB] = useState(false);
-  const [post, setPost] = useState({user_id: "", title: "", content: ""});
+  const [currentUser, setCurrentUser] = useState(false);
+  const [post, setPost] = useState({title: "", content: "", token: ""});
 
   useEffect(() => {
     setPost(post);
@@ -36,23 +37,25 @@ function App() {
          });
         setActive(active);
         setPostDB(postDB);
+        console.log('post', postDB);
    // empty dependency array means this effect will only run once (like componentDidMount in classes)
- }, [postDB, post]);
+ }, [post]);
 
   return (
     <div className="App">
       <FormSignIn onSetActive={setActive} active={active} isActive={active === 'signIn' ? 'active' : 'notActive'}/>
-      <FormLogIn onSetActive={setActive} active={active} isActive={active === 'logIn' ? 'active' : 'notActive'}/>
-      <FormPost onSetActive={setActive} active={active} onSetPost={setPost} post={post} isActive={active === 'post' ? 'active' : 'notActive'}/>
+      <FormLogIn onSetActive={setActive} setCurrentUser={setCurrentUser} active={active} isActive={active === 'logIn' ? 'active' : 'notActive'}/>
+      <FormPost currentUser={currentUser} onSetActive={setActive} active={active} onSetPost={setPost} post={post} isActive={active === 'post' ? 'active' : 'notActive'}/>
 
-      <div className={`c-post ${active === 'post' ? 'active' : 'notActive'}`} >
+      <div className='c-post active' >
         <h1>Tout les articles</h1>
         { postDB !== false ?
             postDB.map((item, i) => {
+              console.log(item);
               return(
                 <div className="c-card">
                   <h2>{item.title}</h2>
-                  <p>Par: [user-name]<br/>Le: {item.date}</p>
+                  <p>Par: {item.username}<br/>Le: {item.date}</p>
                   <p>{item.content}</p>
                 </div>
               )

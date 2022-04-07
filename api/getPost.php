@@ -7,12 +7,7 @@ header('Content-Type: application/json');
 // Create connection
 include 'PDO.php';
 
-// $rest_json = file_get_contents("php://input");
-// $_GET = json_decode($rest_json, true);
-
-// if($_GET){
-
-	$query = "SELECT * FROM `posts` ORDER BY `date` DESC";
+	$query = "SELECT posts.title,posts.date,posts.content,user.username  FROM `posts` INNER JOIN `user` ON posts.token = user.token ORDER BY `date` DESC";
 	$result = $db->query($query);
 	$row = $result->fetchAll();
 
@@ -21,8 +16,3 @@ include 'PDO.php';
 	}else {
 	   echo json_encode(["sent" => false, "message" => 'post pas ajouté']);
  }
-// }else{
-// 	// tell the user about error
-//   echo json_encode(["sent" => false, "message" =>  'error post empty']);
-//
-// }

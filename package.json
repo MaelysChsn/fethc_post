@@ -12,6 +12,7 @@
     "react-dom": "^18.0.0",
     "react-formdata": "^3.0.0",
     "react-scripts": "5.0.0",
+    "react-token-auth": "^2.3.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

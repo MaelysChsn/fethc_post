@@ -20,7 +20,12 @@ if($_POST){
 		$count = $result->rowCount();
 
 		if($count){
-			 echo json_encode(["sent" => true, "message" => 'user existe']);
+			$query_token = "SELECT `token` FROM `user` WHERE `username`='$username' AND `password`='$password' ";
+		 	$result_token = $db->query($query_token);
+			$row = $result_token->fetchAll();
+			if($result_token){
+				echo json_encode(["sent" => true, "message" => 'user existe', "token" => $row[0]]);
+			}
 		}else{
 		   echo json_encode(["sent" => 104, "message" =>'user existe pas']);
 		}

@@ -11,12 +11,13 @@ $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
 
 if($_POST){
-	if(!empty($_POST['user_id']) && !empty($_POST['title']) && !empty($_POST['content'])){
-		$user_id = $_POST['user_id'];
+	if(!empty($_POST['token']) && !empty($_POST['title']) && !empty($_POST['content'])){
+
+		$token = $_POST['token'];
 		$title = $_POST['title'];
 		$content = $_POST['content'];
 
-		$query = "INSERT INTO `posts`(`user_id`, `title`, `content`) VALUES ('$user_id','$title','$content')";
+		$query = "INSERT INTO `posts`(`token`, `title`, `content`) VALUES ('$token','$title','$content')";
 		$result = $db->query($query);
 
 		if ($result) {

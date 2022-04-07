@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ErrorCard from './errorCard'
 
-export default function FormLogIn({isActive, onSetActive, active}){
+export default function FormLogIn({isActive, onSetActive, active, setCurrentUser}){
 
     const [user, setUser] = useState({username: "", password: ""});
     const [code, setCode] = useState(true);
@@ -22,10 +22,11 @@ export default function FormLogIn({isActive, onSetActive, active}){
       fetch(`http://localhost:5555/logIn.php`, requestOptions)
           .then(response => response.json())
           .then(data => {
-             console.log('data', data);
+             console.log('data', data.token.token);
              if(data.sent === true){
                onSetActive('post');
                setCode(true);
+               setCurrentUser(data.token.token);
              }else{
                 setCode(data.sent);
              }
