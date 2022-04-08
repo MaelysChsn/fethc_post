@@ -21,6 +21,7 @@ export default function FormPost({currentUser, onSetActive, isActive, active, on
       fetch(`http://localhost:5555/post.php`, requestOptions)
           .then(response => response.json())
           .then(data => {
+             console.log('Success', data);
              if(data.sent === true){
                 setCode(true);
              }else{
@@ -39,7 +40,7 @@ export default function FormPost({currentUser, onSetActive, isActive, active, on
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      onSetPost({title: e.target.title.value, content: e.target.content.value, token: e.target.token.value})
+      onSetPost({ title: e.target.title.value, content: e.target.content.value, token: e.target.token.value})
    }
 
     return (

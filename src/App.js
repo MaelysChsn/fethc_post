@@ -13,6 +13,7 @@ function App() {
   const [post, setPost] = useState({title: "", content: "", token: ""});
 
   useEffect(() => {
+    setCurrentUser(currentUser);
     setPost(post);
      // POST request using fetch inside useEffect React hook
      const requestOptions = {
@@ -37,9 +38,8 @@ function App() {
          });
         setActive(active);
         setPostDB(postDB);
-        console.log('post', postDB);
    // empty dependency array means this effect will only run once (like componentDidMount in classes)
- }, [post]);
+ }, [post, postDB]);
 
   return (
     <div className="App">
@@ -51,7 +51,6 @@ function App() {
         <h1>Tout les articles</h1>
         { postDB !== false ?
             postDB.map((item, i) => {
-              console.log(item);
               return(
                 <div className="c-card">
                   <h2>{item.title}</h2>

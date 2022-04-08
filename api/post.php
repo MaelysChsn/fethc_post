@@ -12,7 +12,6 @@ $_POST = json_decode($rest_json, true);
 
 if($_POST){
 	if(!empty($_POST['token']) && !empty($_POST['title']) && !empty($_POST['content'])){
-
 		$token = $_POST['token'];
 		$title = $_POST['title'];
 		$content = $_POST['content'];

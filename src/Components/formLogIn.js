@@ -22,7 +22,6 @@ export default function FormLogIn({isActive, onSetActive, active, setCurrentUser
       fetch(`http://localhost:5555/logIn.php`, requestOptions)
           .then(response => response.json())
           .then(data => {
-             console.log('data', data.token.token);
              if(data.sent === true){
                onSetActive('post');
                setCode(true);
@@ -35,7 +34,6 @@ export default function FormLogIn({isActive, onSetActive, active, setCurrentUser
             console.error('Error:', error);
           });
 
-          console.log('user', user);
 
         onSetActive(active);
 
