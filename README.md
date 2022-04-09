@@ -1,4 +1,4 @@
-# Pour lancer l'application
+⚠️# Pour lancer l'application ⚠️
 
 Je n'ai pas pu résoudre le problème à temps malheureusement pour que le npm start de l'application se fasse automatiquement
 
