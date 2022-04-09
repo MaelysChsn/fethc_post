@@ -13,8 +13,8 @@ $_POST = json_decode($rest_json, true);
 if($_POST){
 	if(!empty($_POST['token']) && !empty($_POST['title']) && !empty($_POST['content'])){
 		$token = $_POST['token'];
-		$title = $_POST['title'];
-		$content = $_POST['content'];
+		$title = addslashes($_POST['title']);
+		$content = addslashes($_POST['content']);
 
 		$query = "INSERT INTO `posts`(`token`, `title`, `content`) VALUES ('$token','$title','$content')";
 		$result = $db->query($query);

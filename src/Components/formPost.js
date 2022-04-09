@@ -13,7 +13,7 @@ export default function FormPost({currentUser, onSetActive, isActive, active, on
         headers:
         {
           'Accept': 'application/json',
-          'Content-Type': 'application.json'
+          'Content-Type': 'application.json; charset=ISO-8859-1'
         },
         body: JSON.stringify(post)
       };
