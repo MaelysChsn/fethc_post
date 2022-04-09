@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 // Create connection
 include 'PDO.php';
 
-	$query = "SELECT posts.title, posts.date, posts.content, user.username  FROM `posts` INNER JOIN `user` ON posts.token = user.token ORDER BY `date` DESC";
+	$query = "SELECT posts.title, posts.currentDate, posts.content, user.username  FROM `posts` INNER JOIN `user` ON posts.token = user.token ORDER BY `currentDate` DESC";
 	$result = $db->query($query);
 	$row = $result->fetchAll();
 

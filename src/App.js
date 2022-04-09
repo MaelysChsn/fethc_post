@@ -22,14 +22,16 @@ function App() {
        headers:
        {
          'Accept': 'application/json',
-         'Content-Type': 'application.json; charset=UTF-8'
+         'Content-Type': 'application.json'
        }
      };
 
      fetch(`http://localhost:5555/getPost.php`)
          .then(response => response.json())
          .then(data => {
+           console.log()
            if(data.sent === true){
+
              setPostDB(data.result);
           }
          })
@@ -54,7 +56,7 @@ function App() {
               return(
                 <div className="c-card">
                   <h2>{item.title}</h2>
-                  <p>Par: {item.username}<br/>Le: {item.date}</p>
+                  <p>Par: {item.username}<br/>Le: {item.currentDate}</p>
                   <p>{item.content}</p>
                 </div>
               )
