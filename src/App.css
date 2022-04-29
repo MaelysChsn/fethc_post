@@ -40,10 +40,7 @@
 * {
     box-sizing: border-box;
 }
- .App {
-     max-width: 420px;
-     margin: 0 auto;
-}
+
  p {
      text-align: center;
      font-weight: 500;
@@ -113,6 +110,16 @@
   flex-direction: column;
   justify-content:flex-start;
   align-items: flex-start;
+}
 
+.c-post{
+  height: 300vh;
+  overflow: scroll;
+}
 
+.App{
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  width: 100%;
+  grid-gap: 90px;
 }

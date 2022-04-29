@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ErrorCard from './errorCard'
 
-export default function FormPost({currentUser, onSetActive, isActive, active, onSetPost, post}){
+export default function FormPost({currentUser, onSetPost, post, logged}){
 
    const [code, setCode] = useState(true);
 
@@ -32,9 +32,6 @@ export default function FormPost({currentUser, onSetActive, isActive, active, on
             console.error('Error:', error);
           });
 
-
-        onSetActive(active);
-
    // empty dependency array means this effect will only run once (like componentDidMount in classes)
 }, [post]);
 
@@ -45,7 +42,7 @@ export default function FormPost({currentUser, onSetActive, isActive, active, on
 
     return (
     <>
-      <div className={isActive}>
+      <div className={logged ? 'active':'notActive'}>
          <p>Poster un article</p>
          <div>
              <form onSubmit={handleSubmit} >

@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import ErrorCard from './errorCard'
 
-export default function FormSignIn({isActive, onSetActive, active}){
+export default function FormSignIn({}){
 
     const [data, setData] = useState({username: "", password: "", token: ""});
     const [code, setCode] = useState(true);
@@ -23,7 +23,6 @@ export default function FormSignIn({isActive, onSetActive, active}){
           .then(response => response.json())
           .then(data => {
             if(data.sent === true){
-              onSetActive('logIn');
               setCode(true);
             }else{
               setCode(data.sent);
@@ -33,11 +32,8 @@ export default function FormSignIn({isActive, onSetActive, active}){
             console.error('Error:', error);
           });
 
-
-        onSetActive(active);
-
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [data, active]);
+  }, [data]);
 
   function generate_token(length){
       //edit the token allowed characters
@@ -57,7 +53,7 @@ export default function FormSignIn({isActive, onSetActive, active}){
 
     return (
     <>
-    <div className={isActive}>
+    <div className="active">
          <p>S'inscrire</p>
          <div>
              <form onSubmit={handleSubmit} >
@@ -72,7 +68,6 @@ export default function FormSignIn({isActive, onSetActive, active}){
                  <input type="submit" id="submit" value="Sign In" />
              </form>
          </div>
-         <button type="button"  className="btn" onClick={() => onSetActive('logIn')}>Se connecter ?</button>
          <ErrorCard code={code}/>
       </div>
 

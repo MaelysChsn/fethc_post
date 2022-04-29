@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import FormSignIn from './Components/formSignIn'
-import FormLogIn from './Components/formLogIn'
+
 import FormPost from './Components/formPost'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-
-  const [active, setActive] = useState('signIn');
+function App({user, logged}) {
   const [postDB, setPostDB] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(user);
   const [post, setPost] = useState({title: "", content: "", token: ""});
 
   useEffect(() => {
@@ -38,18 +35,16 @@ function App() {
          .catch((error) => {
            console.error('Error:', error);
          });
-        setActive(active);
+
         setPostDB(postDB);
    // empty dependency array means this effect will only run once (like componentDidMount in classes)
  }, [post, postDB]);
 
   return (
     <div className="App">
-      <FormSignIn onSetActive={setActive} active={active} isActive={active === 'signIn' ? 'active' : 'notActive'}/>
-      <FormLogIn onSetActive={setActive} setCurrentUser={setCurrentUser} active={active} isActive={active === 'logIn' ? 'active' : 'notActive'}/>
-      <FormPost currentUser={currentUser} onSetActive={setActive} active={active} onSetPost={setPost} post={post} isActive={active === 'post' ? 'active' : 'notActive'}/>
 
-      <div className='c-post active' >
+
+      <div className='c-post active'>
         <h1>Tout les articles</h1>
         { postDB !== false ?
             postDB.map((item, i) => {
@@ -65,6 +60,7 @@ function App() {
           null
         }
       </div>
+      <FormPost currentUser={currentUser} onSetPost={setPost} post={post} logged={logged}/>
     </div>
   );
 }

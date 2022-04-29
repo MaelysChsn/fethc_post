@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import ErrorCard from './errorCard'
 
-export default function FormLogIn({isActive, onSetActive, active, setCurrentUser}){
+export default function FormLogIn({setCurrentUser, setLogged}){
+    const naviguate = useNavigate();
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
 
     const [user, setUser] = useState({username: "", password: ""});
     const [code, setCode] = useState(true);
@@ -23,9 +28,10 @@ export default function FormLogIn({isActive, onSetActive, active, setCurrentUser
           .then(response => response.json())
           .then(data => {
              if(data.sent === true){
-               onSetActive('post');
                setCode(true);
+               setLogged(true);
                setCurrentUser(data.token.token);
+               naviguate(from, {replace: true});
              }else{
                 setCode(data.sent);
              }
@@ -34,21 +40,19 @@ export default function FormLogIn({isActive, onSetActive, active, setCurrentUser
             console.error('Error:', error);
           });
 
-
-        onSetActive(active);
-
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
 }, [user]);
 
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      setUser({username: e.target.username.value, password: e.target.password.value})
+      setUser({username: e.target.username.value, password: e.target.password.value});
+      console.log(user)
    }
 
     return (
     <>
-    <div className={isActive}>
+    <div className="acitve">
          <p>Se Connecter</p>
          <div>
              <form onSubmit={handleSubmit}>
@@ -62,7 +66,7 @@ export default function FormLogIn({isActive, onSetActive, active, setCurrentUser
                  <input type="submit" value="Submit"/>
              </form>
          </div>
-         <button type="button" className="btn" onClick={() =>  onSetActive('signIn')}>S'inscrire ?</button>
+         <button type="button" className="btn">S'inscrire ?</button>
          <ErrorCard code={code} />
       </div>
      </>

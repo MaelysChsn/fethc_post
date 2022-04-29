@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root{
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+#root > div{
+  padding: 0 60px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+nav{
+  background-color: #242424;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  height: 100vh;
+}
+
+nav ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 50%;
+  width: 100%;
+  padding: 0 30px;
+}
+
+nav .button{
+  height: 10%!important;
+  bottom: 0;
+}
+
+nav ul a{
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.c-btn{
+  width: 100%;
+  padding: 10px;
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.login{
+  background-color: #f5c20c;
+  color: black;
+}
+
+.logout{
+  background-color: #f44242;
+  color: white;
+}
